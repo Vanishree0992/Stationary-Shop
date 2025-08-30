@@ -1,0 +1,277 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .team-card {
+        border-radius: 20px;
+        overflow: hidden;
+        height: 280px;
+        margin-bottom: 20px;
+    }
+
+    .team-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .pen-pencil-section {
+
+        padding: 60px 0;
+    }
+
+    .section-title {
+        font-size: 36px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 40px;
+        text-transform: uppercase;
+    }
+
+    .description-text {
+        font-size: 1.125rem;
+        line-height: 1.7;
+        color: #333;
+        margin-bottom: 50px;
+    }
+
+    .product-image {
+        width: 100%;
+        height: 450px;
+        border-radius: 8px;
+    }
+
+
+    .image-container {
+        margin-top: 50px;
+        position: relative;
+        height: 1000px;
+    }
+
+    .image-1 {
+        position: absolute;
+        top: 20px;
+        left: 0;
+        width: 55%;
+        height: 900px;
+        z-index: 3;
+    }
+
+    .image-2 {
+        position: absolute;
+        top: 0;
+        right: 10%;
+        width: 35%;
+        z-index: 2;
+    }
+
+    .image-3 {
+        position: absolute;
+        bottom: 20px;
+        right: 0;
+        width: 30%;
+        z-index: 1;
+    }
+
+    /* Mobile responsive adjustments */
+    @media (max-width: 768px) {
+        .image-container {
+            min-height: 300px;
+        }
+
+        .image-1 {
+            width: 40%;
+            top: 10px;
+        }
+
+        .image-2 {
+            width: 30%;
+            right: 5%;
+        }
+
+        .image-3 {
+            width: 35%;
+            bottom: 10px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .image-container {
+            min-height: 250px;
+        }
+
+        .image-1 {
+            width: 45%;
+            top: 5px;
+        }
+
+        .image-2 {
+            width: 35%;
+            right: 0;
+        }
+
+        .image-3 {
+            width: 40%;
+            bottom: 5px;
+        }
+    }
+</style>
+<div class="container my-4">
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <img src="{% static 'images/about.png' %}" alt="Product Image" class="img-fluid w-100"
+                style="max-height: 600px; object-fit: cover; border-radius: 30px;">
+        </div>
+    </div>
+
+    <h2 style="font-size: 40px;font-weight:semibold; text-align: center; padding: 40px;">"Smart Supplies for Bright
+        Future"</h2>
+
+    <p class=" mb-5" style="font-size:22px;color: black;padding-bottom: 30px;">
+        We provide quality stationary and school supplies to support learning , creativity and organization.
+        From classrooms to home desks, we're here to help students and education stay prepared and inspired.
+    </p>
+
+</div>
+<div class="row g-5">
+    <div class="col-md-4">
+        <img src="{% static 'images/nome7.png' %}" class="img-fluid rounded-3 shadow-sm" alt="Stationery 1"
+            style="width: 100%; height: 100%;object-fit: cover; border-radius: 30px">
+    </div>
+    <div class="col-md-4">
+        <img src="{% static 'images/pen1.png' %}" class="img-fluid rounded-3 shadow-sm" alt="Stationery 2"
+            style="width: 100%; height: 100%;object-fit: cover; border-radius: 30px">
+    </div>
+    <div class="col-md-4">
+        <img src="{% static 'images/note3.png' %}" class="img-fluid rounded-3 shadow-sm" alt="Stationery 3"
+            style="width: 100%; height: 100%;object-fit: cover; border-radius: 30px">
+    </div>
+</div>
+</div>
+
+<div class="pen-pencil-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- Section Title -->
+                <h2 class="section-title text-left text-dark">PEN & PENCIL</h2>
+
+                <!-- Description -->
+
+                <p class="description-text text-left fs-5 " style="color: black;font-weight: 400;">
+                    At Supplyhive, we believe a great pen is more than just a writing tool—it's an expression of
+                    thought, precision, and personality. From smooth everyday ballpoints to elegant signature
+                    pens, we offer reliable writing instruments designed for comfort, style, and performance.
+                </p>
+
+
+                <!-- Product Image -->
+                <div class="row justify-content-center">
+                    <div class="row g-4 justify-content-center">
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <img src="{% static 'images/pen2.png' %}" alt="Collection of various pens"
+                                class="product-image">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <img src="{% static 'images/pen5.png' %}" alt="Collection of colored pencils"
+                                class="product-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="col-12">
+    <!-- Section Title -->
+    <h2 class="section-title text-left text-dark">Bags</h2>
+    <div class="row justify-content-center">
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-6 col-md-6 col-12">
+                <img src="{% static 'images/bag1.png' %}" alt="Collection of various pens" class="product-image"
+                    style="width: 100%; height: 100%;object-fit: cover; border-radius: 30px">>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <img src="{% static 'images/bag2.png' %}" alt="Collection of colored pencils" class="product-image">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-12 p-5">
+    <h2 class="section-title text-left text-dark">All Stationary</h2>
+
+    <p class="description-text text-left fs-5 " style="color: black;font-weight: 400;">
+        We offer a wide range of stationary essentials, from notebooks folders and sticky notes to markers, staplers,
+        rulers. Each item is chosen for quality, functionality , and style-perfect for school, office, or creative use.
+    </p>
+    <div class="image-container">
+        <!-- Left Image - Notebook with pen -->
+        <img src="{% static 'images/nome4.png' %}" alt="Notebook with pen" class="product-image image-1">
+
+        <!-- Top Right Image - Yellow sticky note -->
+        <img src="{% static 'images/cart.png' %}" alt="Yellow sticky note with pin" class="product-image image-2">
+
+        <!-- Bottom Right Image - Red stapler -->
+        <img src="{% static 'images/office2.png' %}" alt="Red stapler" class="product-image image-3">
+    </div>
+</div>
+
+
+
+<div class="container py-5 my-5">
+    <!-- Section Header -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="text-center">
+                <h2 class=" fw-bold mb-4 text-dark" style="font-size: 36px;">The Team</h2>
+                <p class=" text-dark mx-auto" style="font-size: 22px; max-width: 900px; line-height: 1.4;">
+                    Our team is a dedicated group of professionals passionate about delivering quality stationery in
+                    bulk with efficiency and care. With expertise in sourcing, logistics, and customer service, we
+                    ensure every order meets the highest standards.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Members -->
+    <div class="row g-4">
+        <!-- Team Member 1 -->
+        <div class="col-lg-4 col-md-6 col-12">
+            <div class="text-center">
+                <div class="team-card mx-auto">
+                    <img src="{% static 'images/test1.png' %}" alt="Seth Rollins - Shop Owner">
+                </div>
+                <h4 class="fw-bold mt-3 mb-1 text-dark">Seth Rollins</h4>
+                <p class="text-muted mb-0 fs-5">Shop Owner</p>
+            </div>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="col-lg-4 col-md-6 col-12">
+            <div class="text-center">
+                <div class="team-card mx-auto">
+                    <img src="{% static 'images/test2.png' %}" alt="Seth Rollins - Manager">
+                </div>
+                <h4 class="fw-bold mt-3 mb-1 text-dark">Seth Rollins</h4>
+                <p class="text-muted mb-0 fs-5">Manager</p>
+            </div>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div class="col-lg-4 col-md-6 col-12">
+            <div class="text-center">
+                <div class="team-card mx-auto">
+                    <img src="{% static 'images/test3.png' %}" alt="Seth Rollins - Shop Keeper">
+                </div>
+                <h4 class="fw-bold mt-3 mb-1 text-dark">Seth Rollins</h4>
+                <p class="text-muted mb-0 fs-5">Shop Keeper</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

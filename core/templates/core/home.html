@@ -1,0 +1,391 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+    .offer-tag {
+        background: #ff3b3b;
+        color: white;
+        font-weight: bold;
+        padding: 10px 15px;
+        border-radius: 12px;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        white-space: nowrap;
+    }
+
+    .product-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 160px;
+        flex-wrap: wrap;
+    }
+
+    .product-card {
+        background-color: #80a9ff;
+        border-radius: 15px;
+        width: 300px;
+        height: 400px;
+        line-height: 1.2;
+        overflow: hidden;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-card img {
+        width: 120%;
+        display: block;
+    }
+
+    .product-info {
+        padding: 15px;
+    }
+
+    .product-info h3 {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .stars {
+        color: #ffea00;
+        font-size: 20px;
+    }
+
+    .price {
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .bulk-price {
+       font-weight: semibold;
+        font-size: 16px;
+    }
+
+    .add-cart-btn {
+        background-color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-size: 20px;
+        cursor: pointer;
+        margin: 15px;
+        margin-left: 35px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .add-cart-btn:hover {
+        background-color: #000;
+        color: #fff;
+    }
+
+     .team-card {
+            border-radius: 20px;
+            overflow: hidden;
+            height: 280px;
+            margin-bottom: 20px;
+        }
+        .team-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+</style>
+
+
+
+<div class="container my-2" style="position: relative;height:500px;">
+    <div class="row align-items-center text-center">
+
+        <!-- Left Image -->
+        <div class="col-md-4 mb-3 mb-md-0">
+            <img src="{% static 'images/note1.png' %}" class="img-fluid rounded shadow" alt="Left Product"
+                style="width: 450px;height: 300px;border-radius: 40px;position: absolute;top: 100px;left: 0;">
+        </div>
+
+        <!-- Center Bags + Offer -->
+        <div class="col-md-4 position-relative" style="position: absolute;top: 60px;">
+            <!-- Offer Tag -->
+            <div class="offer-tag position-absolute top-40 start-50 translate-middle-x">
+                Upto 50% off on <br> Bulk Order
+            </div>
+            <!-- Two Bags Side by Side -->
+            <div class="d-flex justify-content-center mt-5 gap-3">
+                <img src="{% static 'images/bag.png' %}" class="img-fluid" style="max-height:300px;" alt="Bag 1">
+                <img src="{% static 'images/bag.png' %}" class="img-fluid" style="max-height:300px;" alt="Bag 2">
+            </div>
+        </div>
+
+        <!-- Right Image -->
+        <div class="col-md-4">
+            <img src="{% static 'images/pen4.png' %}" class="img-fluid rounded shadow" alt="Right Product"
+                style="width: 450px;height: 300px;border-radius: 40px;position: absolute;top:0;right: 0;">
+        </div>
+
+    </div>
+</div>
+
+<div class="container text-center my-5">
+    <!-- Heading -->
+    <h2 class="fw-bold mb-3" style="font-size:36px;">
+        Essential Stationery, Exceptional Supply
+    </h2>
+    <p class=" mb-5" style="font-size:22px;color: black;padding-bottom: 30px;">
+        From pens to paper, we deliver quality tools that power classrooms, offices, and creativity.<br>
+        Bulk pricing, reliable service, and everything your workspace needs—right at your fingertips.
+    </p>
+
+    <!-- 3 Images -->
+    <div class="row g-5">
+        <div class="col-md-4">
+            <img src="{% static 'images/nome1.png' %}" class="img-fluid rounded-3 shadow-sm" alt="Stationery 1">
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'images/nome2.png' %}" class="img-fluid rounded-3 shadow-sm" alt="Stationery 2">
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'images/nome3.png' %}" class="img-fluid rounded-3 shadow-sm" alt="Stationery 3">
+        </div>
+    </div>
+</div>
+
+
+<div class="container" style="margin-top: 70px;">
+    <div class="row align-items-center">
+
+        <!-- Left Content -->
+        <div class="col-md-7 p-4">
+            <h5 class="fw-bold mb-2" style="font-size: 34px;">1. Writing Essentials</h5>
+            <p class="mb-4" style="font-size: 22px;padding-bottom: 10px;">
+                From everyday ballpoint pens to premium gel pens and highlighters, our writing tools ensure clarity,
+                comfort, and reliability.
+                Perfect for classrooms, offices, or creative spaces, these essentials are built to support productivity
+                and expression at every level.
+            </p>
+
+            <h5 class="fw-bold mb-2" style="font-size: 34px;">2. Paper Products</h5>
+            <p class="mb-4" style="font-size: 22px;padding-bottom: 10px;">
+                Whether it’s notebooks, notepads, printer paper, or sticky notes, our paper supplies cover every need.
+                Designed for durability and smooth performance, these products are ideal for note-taking, organizing,
+                printing, or planning in any setting.
+            </p>
+
+            <h5 class="fw-bold mb-2" style="font-size: 34px;">3. Classroom & Office Tools</h5>
+            <p style="font-size: 22px;padding-bottom: 10px;">
+                Keep workspaces equipped and efficient with rulers, staplers, scissors, erasers, and more.
+                These tools bring order and precision to daily tasks, making them indispensable in both educational and
+                professional environments.
+            </p>
+        </div>
+
+        <!-- Right Image -->
+        <div class="col-md-5 text-center mt-4 mt-md-0">
+            <img src="{% static 'images/nome4.png' %}" class="img-fluid" alt="Notepad and Pen">
+        </div>
+
+    </div>
+</div>
+
+<div>
+    <h2 style="font-weight: bold;font-size: 34px;text-align: center;padding: 30px;padding-bottom: 50px;">Featured Product</h2>
+
+    <div class="product-container">
+        <div class="product-card">
+            <img src="{% static 'images/office1.png' %}" alt="Scientific Calculator">
+            <div class="product-info">
+                <h3>Scientific Calculator</h3>
+                <div class="stars">★★★★★</div>
+                <div class="price">Rs. 50</div>
+                <div class="bulk-price">Buy a pack of 10 @ Rs. 249</div>
+                <button class="add-cart-btn">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="{% static 'images/nome5.png' %}" alt="Scientific Calculator">
+            <div class="product-info">
+                <h3>Scientific Calculator</h3>
+                <div class="stars">★★★★★</div>
+                <div class="price">Rs. 50</div>
+                <div class="bulk-price">Buy 3 or more @ Rs. 101.20</div>
+                <button class="add-cart-btn">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="{% static 'images/office3.png' %}" alt="Scientific Calculator">
+            <div class="product-info">
+                <h3>Scientific Calculator</h3>
+                <div class="stars">★★★★★</div>
+                <div class="price">Rs. 50</div>
+                <div class="bulk-price">Buy 3 or more @ Rs. 101.20</div>
+                <button class="add-cart-btn">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+  <div class="row g-5">
+    <h2 style="font-weight: bold;font-size: 34px;text-align: center;padding: 30px;padding: 30px;padding-top: 80px;">Trending</h2>
+        <div class="col-md-4">
+            <img src="{% static 'images/office3.png' %}" class="img-fluid rounded-3 shadow-sm" alt="Stationery 1"
+             style="width: 100%; height: 100%;object-fit: cover; border-radius: 30px">
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'images/nome6.png' %}" class="img-fluid rounded-3 shadow-sm" alt="Stationery 2"
+            style="width: 100%; height: 100%;object-fit: cover; border-radius: 30px">
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'images/nome7.png' %}" class="img-fluid rounded-3 shadow-sm" alt="Stationery 3"
+            style="width: 100%; height: 100%;object-fit: cover; border-radius: 30px">
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'images/nome7.png' %}" class="img-fluid rounded-3 shadow-sm" alt="Stationery 1"
+            style="width: 100%; height: 100%;object-fit: cover; border-radius: 30px">
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'images/nome2.png' %}" class="img-fluid rounded-3 shadow-sm" alt="Stationery 2"
+            style="width: 100%; height: 100%;object-fit: cover; border-radius: 30px">
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'images/pen3.png' %}" class="img-fluid rounded-3 shadow-sm" alt="Stationery 3"
+            style="width: 100%; height: 100%;object-fit: cover; border-radius: 30px">
+        </div>
+    </div>
+
+
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-8">
+            <div class="text-center">
+                <!-- Main Heading -->
+                <h2 class="fw-bold mb-4 text-dark" style="font-size: 36px;">Customer Testimonial</h2>
+                
+                <!-- Subheading -->
+                <h4 class="h4 mb-4 text-dark fw-normal">
+                    Bulk Stationery. Better Prices.<br>
+                    Smarter Supply.
+                </h4>
+                
+                <!-- Profile Image -->
+                <div class="d-flex justify-content-center mb-4">
+                    <div class="rounded-circle overflow-hidden" style="width: 80px; height: 80px;">
+                        <img src="{% static 'images/doc.jpg' %}"
+                             alt="Priya M" 
+                             class="w-100 h-100 object-fit-cover">
+                    </div>
+                </div>
+                
+                <!-- Testimonial Text -->
+                <blockquote class="mb-4">
+                    <p class="fs-4 text-dark mb-0 px-3">
+                        "Working with SupplyHive has been a game-changer for my store. The quality of the stationery is consistently high, prices are competitive, and orders always arrive on time—making it easy to keep my shelves stocked and customers happy."
+                    </p>
+                </blockquote>
+                
+                <!-- Customer Name -->
+                <h5 class="fw-bold mb-1 text-dark">Priya M</h5>
+                
+                <!-- Customer Title -->
+                <p class="text-muted mb-0">Retail shop Owner</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <h2 style="font-weight: bold;font-size: 34px;text-align: center;padding: 30px;padding: 50px;">Back to School</h2>
+
+    <div class="product-container">
+        <div class="product-card">
+            <img src="{% static 'images/pen5.png' %}" alt="Scientific Calculator" style="height: 210px;">
+            <div class="product-info">
+                <h3>Pencil</h3>
+                <div class="stars">★★★★★</div>
+                <div class="price">Rs. 50</div>
+                <div class="bulk-price">Buy a pack of 10 @ Rs. 249</div>
+                <button class="add-cart-btn">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="{% static 'images/pen1.png' %}" alt="Scientific Calculator">
+            <div class="product-info">
+                <h3>Scientific Calculator</h3>
+                <div class="stars">★★★★★</div>
+                <div class="price">Rs. 50</div>
+                <div class="bulk-price">Buy 3 or more @ Rs. 101.20</div>
+                <button class="add-cart-btn">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="{% static 'images/note3.png' %}" alt="Scientific Calculator">
+            <div class="product-info">
+                <h3>Scientific Calculator</h3>
+                <div class="stars">★★★★★</div>
+                <div class="price">Rs. 50</div>
+                <div class="bulk-price">Buy 3 or more @ Rs. 101.20</div>
+                <button class="add-cart-btn">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container py-5 my-5">
+    <!-- Section Header -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="text-center">
+                <h2 class=" fw-bold mb-4 text-dark" style="font-size: 36px;">The Team</h2>
+                <p class=" text-dark mx-auto" style="font-size: 22px; max-width: 900px; line-height: 1.4;">
+                    Our team is a dedicated group of professionals passionate about delivering quality stationery in bulk with efficiency and care. With expertise in sourcing, logistics, and customer service, we ensure every order meets the highest standards.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Members -->
+    <div class="row g-4">
+        <!-- Team Member 1 -->
+        <div class="col-lg-4 col-md-6 col-12">
+            <div class="text-center">
+                <div class="team-card mx-auto">
+                    <img src="{% static 'images/test1.png' %}" alt="Seth Rollins - Shop Owner">
+                </div>
+                <h4 class="fw-bold mt-3 mb-1 text-dark">Seth Rollins</h4>
+                <p class="text-muted mb-0 fs-5">Shop Owner</p>
+            </div>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="col-lg-4 col-md-6 col-12">
+            <div class="text-center">
+                <div class="team-card mx-auto">
+                    <img src="{% static 'images/test2.png' %}" alt="Seth Rollins - Manager">
+                </div>
+                <h4 class="fw-bold mt-3 mb-1 text-dark">Seth Rollins</h4>
+                <p class="text-muted mb-0 fs-5">Manager</p>
+            </div>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div class="col-lg-4 col-md-6 col-12">
+            <div class="text-center">
+                <div class="team-card mx-auto">
+                    <img src="{% static 'images/test3.png' %}" alt="Seth Rollins - Shop Keeper">
+                </div>
+                <h4 class="fw-bold mt-3 mb-1 text-dark">Seth Rollins</h4>
+                <p class="text-muted mb-0 fs-5">Shop Keeper</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

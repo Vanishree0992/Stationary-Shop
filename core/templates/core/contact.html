@@ -1,0 +1,188 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+    .contact-section {
+        background-color: #d6e4f5;
+        border: 1px solid #000;
+        border-radius: 20px;
+        padding: 40px 20px;
+    }
+
+    .contact-box {
+        background-color: #007bff;
+        border-radius: 20px;
+        padding: 30px 20px;
+        color: black;
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    .contact-box i {
+        font-size: 50px;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    .contact-form-section {
+        padding: 60px;
+        border: 1px solid #000;
+        border-radius: 20px;
+        text-align: center;
+        max-width: 1200px;
+        margin: 60px;
+    }
+
+    .form-control {
+        border-radius: 20px;
+        background-color: #64aaf5;
+        color: #000;
+        font-size: 18px;
+        height: 50px;
+        font-weight: 400;
+        text-align: center;
+        margin: 0 auto;
+        width: 65%;
+    }
+
+    .form-control::placeholder {
+        color: #000;
+    }
+
+    .btn-submit {
+        border-radius: 20px;
+        background-color: #007bff;
+        color: #fff;
+        font-weight: 600;
+        padding: 8px 25px;
+        font-size: 22px;
+    }
+
+    .message-box {
+        width: 150px;
+        height: 70px;
+        font-size: 20px;
+        margin-top: 15px;
+        background-color: #64aaf5;
+        font-weight: bold;
+        color: white;
+        display: none;
+        border-radius: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+
+<div class="container my-4">
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <img src="{% static 'images/contact.png' %}" alt="Product Image" class="img-fluid w-100"
+                style="max-height: 600px; object-fit: cover; border-radius: 30px;">
+        </div>
+    </div>
+
+    <h2 style="font-size: 40px;font-weight:semibold; text-align: center; padding: 40px;">"Your Perfect Stationary
+        Partner Is
+        Jast A Message Away !"</h2>
+
+
+
+    <div class="container my-5">
+        <div class="contact-section text-center">
+            <h3 class="mb-4 fw-semibold fs-2">Contact Details</h3>
+            <div class="row g-4 justify-content-center">
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="contact-box h-100">
+                        <i class="fas fa-map-marker-alt">⚲</i>
+                        <p class="mb-0">Location</p>
+                        <p class="mb-0">78 Beechwood Ave.</p>
+                        <p class="mb-0">Sarasota, FL 34231</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="contact-box h-100">
+                        <i class="fas fa-envelope">✉</i>
+                        <p class="mb-0">E-mail</p>
+                        <p class="mb-0">example@gmail.com</p>
+                        <p class="mb-0">debra.holt@example.com</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="contact-box h-100">
+                        <i class="fas fa-phone">☏</i>
+                        <p class="mb-0">Contact</p>
+                        <p class="mb-0">019457896332</p>
+                        <p class="mb-0">016457896333</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <img src="{% static 'images/map.png' %}" alt="Product Image" class="img-fluid w-100"
+                style="max-height: 500px; object-fit: cover; border-radius: 30px;">
+        </div>
+    </div>
+
+
+    <div class="contact-form-section">
+
+        <h4 class="fw-bold fs-2">
+            Have a List? We’ve Got the Stationery—Contact Us Now!
+        </h4>
+        <p class="mt-2 mb-4 fs-4">Write Us</p>
+        <p class="mb-5 fs-4">
+            We are always happy to be of service to you. Be sure to listen to the prompt to help direct you to the right
+            person.
+        </p>
+
+        <form>
+            <div class="row g-4 mb-4">
+                <div class="col-md-6">
+                    <label class="form-label fs-3">Name</label>
+                    <input type="text" class="form-control" placeholder="Enter your Name">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fs-3">Email</label>
+                    <input type="email" class="form-control" placeholder="Enter Email ID">
+                </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <div class="col-md-6">
+                    <label class="form-label fs-3">Phone Number</label>
+                    <input type="text" class="form-control" placeholder="Enter your number">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fs-3">Message</label>
+                    <input type="text" class="form-control" placeholder="Enter Message">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-submit">Send Message</button>
+        </form>
+        <div id="successMessage" class="message-box ">Message Sent</div>
+    </div>
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            document.getElementById("successMessage").style.display = "block";
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    {% endblock %}

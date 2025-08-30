@@ -1,0 +1,117 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .product-card {
+        background-color: #80a9ff;
+        border-radius: 15px;
+        overflow: hidden;
+        text-align: center;
+        transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .product-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .product-info {
+        padding: 15px;
+        background-color: #8fc3fa;
+    }
+
+    .product-info h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    .stars {
+        color: #ffea00;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .price {
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .bulk-price {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .add-cart-btn {
+        background-color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .add-cart-btn:hover {
+        background-color: #000;
+        color: #fff;
+    }
+</style>
+<div class="container mt-4">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            <h5>Categories</h5>
+            <ul class="list-group">
+                {% for cat in categories %}
+                <li class="list-group-item {% if category and category.id == cat.id %}active{% endif %}">
+                    <a href="{% url 'shop:product_list_by_category' cat.slug %}" class="text-decoration-none text-dark">
+                        {{ cat.name }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Products -->
+        <div class="col-md-9">
+            <h3 class="mb-4">All Products</h3>
+            <div class="row">
+                {% for product in products %}
+                <div class="col-md-4 mb-4">
+                    <div class="product-card shadow-sm">
+                        {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% else %}
+                        <img src="{% static 'images/no-image-placeholder.jpg' %}" alt="{{ product.name }}">
+                        {% endif %}
+                        <div class="product-info">
+                            <h3>{{ product.name }}</h3>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <div class="price">Rs. {{ product.price }}</div>
+                            <div class="bulk-price">Buy 3 or more @ Rs. 101.20</div>
+                            <form method="post" action="{% url 'shop:add_to_cart' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_id" value="{{ product.id }}">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="add-cart-btn">Add to Cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <p>No products found in this category.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="mb-4">My Cart</h2>
+
+    {% if items %}
+    <div class="card p-3 mb-4 shadow-sm rounded">
+        <div class="row text-center fw-bold border-bottom pb-2">
+            <div class="col-md-4">Product</div>
+            <div class="col-md-2">Quantity</div>
+            <div class="col-md-2">Unit Price</div>
+            <div class="col-md-2">Total Price</div>
+            <div class="col-md-2"></div>
+        </div>
+
+        {% for item in items %}
+        <div class="row align-items-center text-center py-3 border-bottom">
+            <!-- Product Image + Info -->
+            <div class="col-md-4">
+                <img src="{{ item.image }}" alt="{{ item.name }}" class="img-fluid rounded mb-2"
+                    style="max-width:120px;">
+                <p class="mb-1 fw-bold">{{ item.name }}</p>
+                <p class="mb-1 text-success">Rs.{{ item.price }}</p>
+                <small class="text-success">Buy 10 or more @ Rs.{{ item.bulk_price }}</small>
+            </div>
+
+            <!-- Quantity -->
+            <div class="col-md-2">
+                <div class="d-flex justify-content-center align-items-center">
+                    <form method="post" action="{% url 'shop:update_cart' item.product_id %}">
+                        {% csrf_token %}
+                        <div class="input-group input-group-sm">
+                            <button type="submit" name="action" value="increase"
+                                class="btn btn-outline-success">+</button>
+                            <input type="text" name="quantity" value="{{ item.quantity }}"
+                                class="form-control text-center" style="max-width:60px;" readonly>
+                            <button type="submit" name="action" value="decrease"
+                                class="btn btn-outline-danger">-</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Unit Price -->
+            <div class="col-md-2">
+                Rs.{{ item.price }}
+            </div>
+
+            <!-- Total Price -->
+            <div class="col-md-2 fw-bold">
+                Rs.{{ item.subtotal }}
+            </div>
+
+            <!-- Actions -->
+            <div class="col-md-2">
+                <a href="{% url 'shop:remove_from_cart' item.product_id %}" class="btn btn-sm btn-danger">
+                    Remove
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Totals Section -->
+    <div class="row mt-4">
+        <!-- Totals Section (Left) -->
+        <div class="col p-40px">
+            <div class="p-3  rounded shadow-sm fs-4">
+                <div class="d-flex justify-content-between mb-2 ">
+                    <span class="fw-bold">Subtotal</span>
+                    <span>Rs.{{ total }}</span>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                    <span class="fw-bold">Total</span>
+                    <span>Rs.{{ total }}</span>
+                </div>
+                <a href="{% url 'shop:checkout' %}" class="btn btn-primary rounded-pill" style=" color: black; width: 225px;font-size: 18px; height: 45px;">
+                    Proceed to Checkout
+                </a>
+            </div>
+        </div>
+
+        <!-- Images Section (Right) -->
+        <div class="col-md-6 text-end">
+            <img src="{% static 'images/cart.png' %}" alt="Cart"
+                style="width:150px; height:150px; object-fit:cover; border:none;">
+        </div>
+    </div>
+    {% else %}
+    <p>Your cart is empty.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

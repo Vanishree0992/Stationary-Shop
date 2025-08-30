@@ -1,0 +1,265 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Supplyhive{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm pe-4 ps-3">
+        <div class="container-fluid px-4" style="display: flex;
+            align-items: center;justify-content: space-around;">
+
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <img src="{% static 'images/logo.png' %}" alt="Supplyhive Logo" class="logo-img me-2">
+                <span style="font-size: 20px; font-weight: 500;">Supplyhive</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0" style="width: 800px; display: flex;
+            align-items: center;justify-content: space-around;">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+                            href="{% url 'core:home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if category and category.slug == 'office-basics' %}active{% endif %}"
+                            href="{% url 'shop:product_list_by_category' category_slug='office-basics' %}">
+                            Shop
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}"
+                            href="{% url 'core:about' %}">About us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}"
+                            href="{% url 'core:contact' %}">Contact</a>
+                    </li>
+                    <li class="nav-item ">
+                        {% if user.is_authenticated %}
+                        <a class="nav-link text-danger" href="{% url 'core:logout' %}">Logout</a>
+                        {% else %}
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            Login / Register
+                        </a>
+                        {% endif %}
+                    </li>
+                </ul>
+
+                <form class="d-flex me-3" method="get" action="{% url 'core:search' %}">
+                    <div class="input-group">
+                        <input class="form-control search-bar" type="search" placeholder="Search for Stationery"
+                            name="q" required>
+                        <button class="btn btn-search" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <div class="d-flex align-items-center gap-3">
+                    <li class="nav-item" style="list-style: none;">
+                        <a  class="icon-link {% if request.resolver_match.url_name == 'cart' %}active{% endif %}"
+                            href="{% url 'shop:cart' %}">
+                            <i class="bi bi-cart3"></i>
+                        </a>
+                    </li>
+
+
+                    <a class="nav-link" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-person-circle" style="font-size: 1.4rem;"></i>
+                    </a>
+
+                    <!-- Dropdown Menu -->
+                    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="profileDropdown"
+                        style="border-radius: 15px; min-width: 150px; padding: 8px 0; border: 1px sold black; color: #000;font-size: 20px;">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'core:my_order' %}">My Order</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'core:track_order' %}">Track Order</a>
+                        </li>
+                    </ul>
+
+
+                </div>
+            </div>
+    </nav>
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content"
+                style="border:1px solid #000; border-radius:15px;width: 500px;height: 500px;padding:20px 60px 20px 60px;">
+
+                <!-- Title -->
+                <h4 class="text-center mb-2" style="font-weight:bold; font-size: 30px">Signin</h4>
+
+                <!-- Register link -->
+                <a href="{% url 'core:register' %}" class="d-block text-center mb-3"
+                    style="color:red; font-size:18px; text-decoration:none;">
+                    Create an Account
+                </a>
+
+                <!-- Login Form -->
+                <form method="POST" action="{% url 'core:login' %}">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label for="username" class="form-label" style="font-weight:600; font-size: 24px;">User
+                            name</label>
+                        <input type="text" id="username" name="username" class="form-control" placeholder="User name"
+                            required style="border: 1px solid black;
+        height: 70px;
+        border-radius: 20px;
+        background-color: #7AABF5;
+        color: black;
+        font-size: 24px;
+        font-weight: 400;
+        text-align: center;
+        width: 350px;
+    ">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label"
+                            style="font-weight:600;font-size: 24px;">Password</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+                            required style="border: 1px solid black;
+        height: 70px;
+        border-radius: 20px;
+        background-color: #7AABF5;
+        color: black;
+        font-size: 24px;
+        font-weight: 400;
+        text-align: center;
+        width: 350px;">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary "
+                        style="width: 200px; height: 60px; border-radius: 20px; font-size: 26px; font-weight: 500;margin-left: 100px; margin-top: 30px;">
+                        Submit now
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <main class="container py-4">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer bg-white mt-5 pt-4">
+        <div class="container">
+
+            <div class="d-flex align-items-center mb-4">
+                <img src="{% static 'images/logo.png' %}" alt="Supplyhive Logo" class="logo-img me-2"
+                    style="width: 70px; height: 70px;">
+                <div>
+                    <h5 class="fw-medium mb-0 fs-4">Supplyhive</h5>
+                    <small class="text-muted fs-5">2025 Supplyhive Limited</small>
+                </div>
+            </div>
+
+
+            <div class="foot row text-muted mb-4" style="padding: 20px; font-size: 26px; gap: 45px;">
+
+                <div class="col-8 col-md-2 mb-3">
+                    <h6 class="fw-semibold text-dark">Company</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="{% url 'core:about' %}" class="footer-link">About us</a></li>
+                        <li><a href="#" class="footer-link">Supplyhive corporate</a></li>
+                        <li><a href="#" class="footer-link">Careers</a></li>
+                        <li><a href="#" class="footer-link">Team</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-8 col-md-2 mb-3">
+                    <h6 class="fw-semibold text-dark">Contact us</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="footer-link">Help & Support</a></li>
+                        <li><a href="#" class="footer-link">Partner with us</a></li>
+                        <li><a href="#" class="footer-link">Ride with us</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-8 col-md-2 mb-3">
+                    <h6 class="fw-semibold text-dark">Available in</h6>
+                    <ul class="list-unstyled small">
+                        <li><span class="footer-text">Coimbatore</span></li>
+                        <li><span class="footer-text">Bengaluru</span></li>
+                        <li><span class="footer-text">Chennai</span></li>
+                        <li><span class="footer-text">Kolkata</span></li>
+                    </ul>
+                </div>
+
+                <div class="col-8 col-md-2 mb-3">
+                    <h6 class="fw-semibold text-dark">Legal</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="footer-link">Terms & Conditions</a></li>
+                        <li><a href="#" class="footer-link">Cookie policy</a></li>
+                        <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-8 col-md-2 mb-3">
+                    <h6 class="fw-semibold text-dark">Information</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="footer-link">Location</a></li>
+                        <li><a href="mailto:info@supplyhive.com" class="footer-link">Email</a></li>
+                        <li><a href="#" class="footer-link">Social Media</a></li>
+                    </ul>
+                    <div class="mb-4" style="align-items: flex-end;">
+                        <a href="#" class="me-3"><i class="bi bi-instagram fs-4 text-dark"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-facebook fs-4 text-dark"></i></a>
+                        <a href="#"><i class="bi bi-whatsapp fs-4 text-dark"></i></a>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div
+                class="app-download d-flex flex-column flex-md-row align-items-center justify-content-between pt-3 mt-4 py-4">
+                <p class="mb-2 mb-md-0 fw-medium fs-4">For better experience , download the app now</p>
+
+                <div class="d-flex gap-3">
+
+                    <a href="#" class="store-btn d-flex align-items-center px-3 py-2 text-decoration-none">
+                        <img src="{% static 'images/googleplay.jpg' %}" alt="Google Play" height="24" class="me-2">
+                        <div>
+                            <small class="d-block">Get it on</small>
+                            <span class="fw-semibold">Google play</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="store-btn d-flex align-items-center px-3 py-2 text-decoration-none">
+                        <img src="{% static 'images/apple.jpg' %}" alt="App Store" height="24" class="me-2">
+                        <div>
+                            <small class="d-block">Download on the</small>
+                            <span class="fw-semibold">App Store</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+
+</html>

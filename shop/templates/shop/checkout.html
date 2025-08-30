@@ -1,0 +1,157 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+
+ <style>
+    .form-control {
+      background-color: #7AABF5;
+      border-radius: 10px;
+      border: none;
+      color: black;
+      font-weight: 500;
+    }
+    .form-control:focus {
+      box-shadow: none;
+      border: 2px solid #007bff;
+    }
+    .order-box, .billing-box {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .total-row {
+      background-color: #7AABF5;
+      border-radius: 10px;
+      padding: 5px 10px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+    }
+    .btn-order {
+      background-color: #007bff;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      color: white;
+      font-weight: 500;
+    }
+    /* ✅ Popup */
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background-color: #007bff;
+      color: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      display: none;
+      text-align: center;
+      font-weight: bold;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+      z-index: 9999;
+    }
+    .popup.show {
+      display: block;
+      animation: popupAnim 0.3s ease-in-out forwards;
+    }
+    @keyframes popupAnim {
+      from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+    .popup img {
+      width: 30px;
+      margin-bottom: 10px;
+    }
+  </style>
+
+<div class="container py-4">
+
+  <div class="row">
+    <!-- Billing Details -->
+    <div class="col-md-6" >
+      <div class="billing-box"style="max-width: 500px;">
+        <h5 class="fw-bold mb-4 fs-3">Billing Details</h5>
+        <form id="orderForm" class="fs-5">
+          <div class="mb-4">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" required>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Street Address</label>
+            <input type="text" class="form-control" required>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Town/City</label>
+            <input type="text" class="form-control" required>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Postal Code</label>
+            <input type="text" class="form-control" required>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="col-md-6" style="max-width: 500px;">
+      <div class="order-box mb-4 fs-5">
+        <h6 class="fw-bold fs-3">Your Order</h6>
+        <div class="d-flex justify-content-between mt-3">
+          <span><b>Products</b></span>
+          <span><b>Subtotal</b></span>
+        </div>
+        <div class="d-flex justify-content-between mt-2">
+          <span><b>Scientific Calculator × 10</b></span>
+          <span>Rs.249</span>
+        </div>
+        <div class="total-row mt-3">
+          <span>Total</span>
+          <span>Rs.249</span>
+        </div>
+      </div>
+
+      <!-- Payment Methods -->
+      <div class="order-box mb-4 fs-5" style="max-width: 500px;">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="payment" id="cod" checked>
+          <label class="form-check-label" for="cod">💵 Cash on Delivery</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="payment" id="upi">
+          <label class="form-check-label" for="upi">📱 UPI</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="payment" id="debit">
+          <label class="form-check-label" for="debit">💳 Debit Card</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="payment" id="credit">
+          <label class="form-check-label" for="credit">💳 Credit Card</label>
+        </div>
+      </div>
+
+</div>
+ <button style="margin-left: 100px;" type="submit" form="orderForm" class="fs-4 btn-order w-25">Place order</button>
+    </div>
+  </div>
+  <!-- ✅ Popup -->
+  <div id="successPopup" class="popup fs-3">
+    <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" alt="success">
+    <p>Order Place Successfully</p>
+  </div>
+
+  <script>
+    document.getElementById("orderForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      let popup = document.getElementById("successPopup");
+      popup.classList.add("show");
+      setTimeout(() => {
+        popup.classList.remove("show");
+      }, 3000);
+    });
+  </script>
+
+
+{% endblock %}

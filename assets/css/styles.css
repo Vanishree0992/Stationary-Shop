@@ -1,0 +1,85 @@
+.logo-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.nav-link {
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0 6px;
+}
+
+.nav-link.active {
+    color: #0d6efd !important;
+}
+
+/* Search bar */
+.search-bar {
+    background-color: #87b3f6;
+    border-radius: 50px 0 0 50px;
+    padding-left: 15px;
+}
+
+.btn-search {
+    border-radius: 0 50px 50px 0;
+    background-color: #0d6efd;
+    color: white;
+}
+
+.btn-search:hover {
+    background-color: #0b5ed7;
+}
+
+.foot h6 {
+    font-size: 30px;
+}
+
+/* Icons */
+.icon-link {
+    font-size: 1.3rem;
+    color: #000;
+
+}
+
+.icon-link:hover {
+    color: #0d6efd;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: #6c757d;
+}
+
+.footer-link:hover {
+    color: #0d6efd;
+}
+
+.footer-text {
+    color: #6c757d;
+}
+
+.store-btn {
+    border: 1px solid #000;
+    border-radius: 30px;
+    color: #000;
+    background-color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+
+.store-btn:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+}
+
+.store-btn small {
+    font-size: 0.7rem;
+    line-height: 1;
+}
+
+.store-btn span {
+    font-size: 0.95rem;
+}
+
